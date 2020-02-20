@@ -41,8 +41,30 @@ def write_file(solution, filename):
             outfile.write('\n')
 
 
-def scorer(solution):
-    return 0
+def scorer(solution, D, S, DS, BD):
+    score = 0
+    scanned_books = set()
+    days = {}
+    signup_day = 0
+    for library in solution:
+        signup_day += DS[library]
+        days[library] = signup_day
+        scanned = 0
+        for book in solution[library]:
+            if days[library] >= D:
+                print('Books not scanned, out of time')
+                break
+            if book not in scanned_books:
+                score += S[book]
+                scanned_books.add(book)
+            else:
+                print('Scanning the same book')
+            scanned += 1
+            #print(scanned)
+            if scanned == BD[library]:
+                days[library] += 1
+                scanned = 0
+    return score
 
 def check_constraint(solution):
     return True
@@ -57,7 +79,6 @@ def example(B, L, D, S, DS, BD, BL):
 
 if __name__ == '__main__':
     files = ['example']
-
     algos = [example]
     tot_score = 0
 
@@ -69,9 +90,9 @@ if __name__ == '__main__':
         for alg in algos:
             solution = alg(B, L, D, S, DS, BD, BL)
             check_constraint(solution)
-            scores[alg] = scorer(solution)
+            scores[alg] = scorer(solution, D, S, DS, BD)
             solutions[alg] = solution
-            print("{:20s}{:50s}{}".format(f, alg.__name__, scores[alg]))
+            print("{:20s}{:30s}{}".format(f, alg.__name__, scores[alg]))
 
         # search for best
         best_alg = sorted(scores.items(), key=lambda x: -x[1])[0][0]
