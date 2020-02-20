@@ -33,8 +33,9 @@ def read_file(filename):
 
 def write_file(solution, filename):
     with open(filename, 'w') as outfile:
+        outfile.write("{}\n".format(len(library)))
         for library in solution:
-            outfile.write("{}\n".format(library))
+            outfile.write("{} {}\n".format(library, len(solution[library])))
             for book in solution[library]:
                 outfile.write("{} ".format(book))
             outfile.write('\n')
