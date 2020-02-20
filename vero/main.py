@@ -90,9 +90,9 @@ if __name__ == '__main__':
              'e_so_many_books',
              'f_libraries_of_the_world'
              ]
-    algos = [stecer2,
+    algos = [#stecer2,
              stecer1,
-             stev
+             #stev
              ]
     tot_score = 0
     maximum = 0
@@ -116,7 +116,7 @@ if __name__ == '__main__':
         print("Using {}\n".format(best_alg.__name__))
         tot_score += scores[best_alg]
         solution = solutions[best_alg]
-        write_file(solution, "./output5it/{}.txt".format(f))
+        write_file(solution, "./output/{}.txt".format(f))
 
 
     print("Final score is {}/{}".format(tot_score, maximum))
