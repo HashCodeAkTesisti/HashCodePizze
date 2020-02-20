@@ -33,10 +33,15 @@ def read_file(filename):
 
 def write_file(solution, filename):
     with open(filename, 'w') as outfile:
-        # DO STUFF
-        pass
+        for library in solution:
+            outfile.write("{}\n".format(library))
+            for book in solution[library]:
+                outfile.write("{} ".format(book))
+            outfile.write('\n')
+
 
 def scorer(solution):
+
     return 0
 
 def check_constraint(solution):
@@ -52,12 +57,12 @@ if __name__ == '__main__':
 
     for f in files:
         B, L, D, S, DS, BD, BL = read_file("input/{}.txt".format(f))
-        breakpoint()
 
         scores = {}
         solutions = {}
         for alg in algos:
             solution = alg(B, L, D, S, DS, BD, BL)
+            check_constraint(solution)
             scores[alg] = scorer(solution)
             solutions[alg] = solution
             print("{:20s}{:50s}{}".format(f, alg.__name__, scores[alg]))
