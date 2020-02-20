@@ -90,7 +90,9 @@ if __name__ == '__main__':
              'e_so_many_books',
              'f_libraries_of_the_world'
              ]
-    algos = [stecer1, stev]
+    algos = [stecer1,
+             #stev
+             ]
     tot_score = 0
     maximum = 0
 
