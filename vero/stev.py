@@ -41,9 +41,4 @@ def stev(B, L, D, S, DS, BD, BL):
                     if aux < len(BL[l]):
                         que.put(list(BL[l])[int(aux)])
                         aux += 1
-                    else:
-                        a = 1
-                        break
-            if a == 1:
-                break
     return sol
