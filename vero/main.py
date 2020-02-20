@@ -88,6 +88,7 @@ if __name__ == '__main__':
              ]
     algos = [stecer1]
     tot_score = 0
+    maximum = 0
 
     for f in files:
         B, L, D, S, DS, BD, BL = read_file("input/{}.txt".format(f))
@@ -99,7 +100,9 @@ if __name__ == '__main__':
             check_constraint(solution)
             scores[alg] = scorer(solution, D, S, DS, BD)
             solutions[alg] = solution
-            print("{:20s}{:30s}{}".format(f, alg.__name__, scores[alg]))
+            maximum += sum(S)
+            print("{:20s}{:30s}{}/{}".format(f, alg.__name__, scores[alg],
+                                             maximum))
 
         # search for best
         best_alg = sorted(scores.items(), key=lambda x: -x[1])[0][0]
@@ -109,4 +112,4 @@ if __name__ == '__main__':
         write_file(solution, "./output/{}.txt".format(f))
 
 
-    print("Final score is {} ".format(tot_score))
+    print("Final score is {}/{}".format(tot_score, maximum))
