@@ -1,5 +1,5 @@
 import numpy as np
-from stecer import stecer1
+from stecer import stecer1, stecer2
 from stev import stev
 
 def read_file(filename):
@@ -90,8 +90,9 @@ if __name__ == '__main__':
              'e_so_many_books',
              'f_libraries_of_the_world'
              ]
-    algos = [stecer1,
-             #stev
+    algos = [stecer2,
+             stecer1,
+             stev
              ]
     tot_score = 0
     maximum = 0
@@ -115,7 +116,7 @@ if __name__ == '__main__':
         print("Using {}\n".format(best_alg.__name__))
         tot_score += scores[best_alg]
         solution = solutions[best_alg]
-        write_file(solution, "./output/{}.txt".format(f))
+        write_file(solution, "./output5it/{}.txt".format(f))
 
 
     print("Final score is {}/{}".format(tot_score, maximum))
