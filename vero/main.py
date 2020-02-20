@@ -1,5 +1,6 @@
 import numpy as np
 from stecer import stecer1
+from stev import stev
 
 def read_file(filename):
     """
@@ -33,9 +34,12 @@ def read_file(filename):
 
 
 def write_file(solution, filename):
+    nnz = sum([1 for l in solution if len(solution[l]) > 0])
     with open(filename, 'w') as outfile:
-        outfile.write("{}\n".format(len(solution)))
+        outfile.write("{}\n".format(nnz))
         for library in solution:
+            if len(solution[library]) == 0:
+                continue
             outfile.write("{} {}\n".format(library, len(solution[library])))
             for book in solution[library]:
                 outfile.write("{} ".format(book))
@@ -86,7 +90,7 @@ if __name__ == '__main__':
              'e_so_many_books',
              'f_libraries_of_the_world'
              ]
-    algos = [stecer1]
+    algos = [stecer1, stev]
     tot_score = 0
     maximum = 0
 
