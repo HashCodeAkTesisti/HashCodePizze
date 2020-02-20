@@ -1,4 +1,6 @@
 import numpy as np
+from vero.stev import stev
+
 
 def read_file(filename):
     """
@@ -78,8 +80,10 @@ def example(B, L, D, S, DS, BD, BL):
 
 
 if __name__ == '__main__':
-    files = ['example']
-    algos = [example]
+    files = ['a_example', 'b_read_on', 'c_incunabula',
+             'd_tough_choices', 'e_so_many_books',
+             'f_libraries_of_the_world']
+    algos = [stev]
     tot_score = 0
 
     for f in files:
