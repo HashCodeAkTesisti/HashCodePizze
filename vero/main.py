@@ -33,7 +33,7 @@ def read_file(filename):
 
 def write_file(solution, filename):
     with open(filename, 'w') as outfile:
-        outfile.write("{}\n".format(len(library)))
+        outfile.write("{}\n".format(len(solution)))
         for library in solution:
             outfile.write("{} {}\n".format(library, len(solution[library])))
             for book in solution[library]:
@@ -42,18 +42,23 @@ def write_file(solution, filename):
 
 
 def scorer(solution):
-
     return 0
 
 def check_constraint(solution):
     return True
+
+def example(B, L, D, S, DS, BD, BL):
+    solution = {}
+    solution[1] = [5,2,3]
+    solution[0] = [0,1,2,3,4]
+    return solution
 
 
 
 if __name__ == '__main__':
     files = ['example']
 
-    algos = []
+    algos = [example]
     tot_score = 0
 
     for f in files:
@@ -73,7 +78,7 @@ if __name__ == '__main__':
         print("Using {}\n".format(best_alg.__name__))
         tot_score += scores[best_alg]
         solution = solutions[best_alg]
-        write_file(solution, "./output{}.txt".format(f))
+        write_file(solution, "./output/{}.txt".format(f))
 
 
     print("Final score is {} ".format(tot_score))
